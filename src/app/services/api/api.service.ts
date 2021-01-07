@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResponseI } from 'src/app/models/response.interface';
 import { User } from 'src/app/models/user.interface';
 
 @Injectable({
@@ -8,12 +9,12 @@ import { User } from 'src/app/models/user.interface';
 })
 export class ApiService {
 
-private url = "localhost:8080/RestServer_Java-PeopleData/resources/datos";
+  url:string = "http://localhost:8080/serverPeople/resources/datos/"
 
   constructor(private http: HttpClient ) { }
 
-  registrar(form:User):Observable<User>{
-    let direccion = this.url+"/"
-    return this.http.post<User>(direccion,form)
+  registrar(form:User):Observable<ResponseI>{
+    let direccion = this.url
+    return this.http.post<ResponseI>(direccion,form)
   }
 }

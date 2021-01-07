@@ -28,11 +28,6 @@ export class SignupComponent implements OnInit {
   postForm(form: User){
     this.apiservice.registrar(form).subscribe(data =>{
       console.log(data);
-      
-    });
-console.log(form);
-
-    
-    
+    });    
   }
 }
