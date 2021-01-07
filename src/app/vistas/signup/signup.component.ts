@@ -12,8 +12,9 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
     nombre : new FormControl('', Validators.required),
-    email : new FormControl('', Validators.required),
+    apellido : new FormControl('', Validators.required),
     genero: new FormControl('', Validators.required),
+    email : new FormControl('', Validators.required),
     password : new FormControl('', Validators.required),
     id: new FormControl('', Validators.required)
     
@@ -25,10 +26,13 @@ export class SignupComponent implements OnInit {
   }
 
   postForm(form: User){
-    // this.apiservice.registrar(form).subscribe(data =>{
-    //   console.log(data);
+    this.apiservice.registrar(form).subscribe(data =>{
+      console.log(data);
       
-    // });
+    });
+console.log(form);
+
+    
     
   }
 }

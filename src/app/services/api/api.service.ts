@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user.interface';
 })
 export class ApiService {
 
-private url = "http://localhost:5000/api/v1.0/users";
+private url = "localhost:8080/RestServer_Java-PeopleData/resources/datos";
 
   constructor(private http: HttpClient ) { }
 
