@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.interface';
 })
 export class ApiService {
 
-  url:string = "http://localhost:8080/serverPeople/resources/datos/"
+  url:string = "/serverPeople/resources/datos/"
 
   constructor(private http: HttpClient ) { }
 
