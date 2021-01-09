@@ -20,9 +20,9 @@ export class ApiService {
     return this.http.post<ResponseI>(direccion,form)
   }
 
-  login(form:UserLogin):Observable<ResponseI>{
+  login(form:UserLogin):Observable<any>{
     let direccion = this.url+"login";
-    return this.http.post<ResponseI>(direccion, form);
+    return this.http.post<any>(direccion, form);
   }
 
   logout(){

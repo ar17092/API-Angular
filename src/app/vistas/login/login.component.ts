@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: UserLogin){
     this.apiservice.login(form).subscribe(data =>{
-      localStorage.setItem("token","true");
+      localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
     });
   }
