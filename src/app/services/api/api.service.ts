@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.interface';
 })
 export class ApiService {
 
-  url:string = "/serverPeople/resources/datos/"
+  url:string = "https://peopleserverjava.herokuapp.com/serverPeople/resources/datos/"
 
   constructor(private http: HttpClient ) { }
 
