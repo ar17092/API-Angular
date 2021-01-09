@@ -23,11 +23,16 @@ export class SignupComponent implements OnInit {
   constructor(private apiservice: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token")=="true"){
+      this.router.navigate(['dashboard']);
+    }
   }
 
   postForm(form: User){
     this.apiservice.registrar(form).subscribe(data =>{
       console.log(data);
+      localStorage.setItem("token","true");
+      this.router.navigate(['dashboard']);
     });    
   }
 }
