@@ -10,6 +10,9 @@ import { ApiService } from 'src/app/services/api/api.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+  genres: any =['F','M'];
+
   signupForm = new FormGroup({
     nombre : new FormControl('', Validators.required),
     apellido : new FormControl('', Validators.required),
@@ -32,6 +35,8 @@ export class SignupComponent implements OnInit {
       console.log(data);
       localStorage.setItem("token","true");
       this.router.navigate(['dashboard']);
-    });    
+    }); 
+    console.log(form);
+       
   }
 }

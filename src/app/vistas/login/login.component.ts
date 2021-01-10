@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { ResponseI } from 'src/app/models/response.interface';
 import { UserLogin } from 'src/app/models/userlogin.interface';
 import { ApiService } from "../../services/api/api.service";
 
@@ -26,6 +27,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: UserLogin){
     this.apiservice.login(form).subscribe(data =>{
+      if (data.status) {
+        console.log("Aquí debería devolver algo el API "+data.status); 
+      }
+      
       localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
     });

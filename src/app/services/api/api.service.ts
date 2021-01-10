@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -20,9 +20,9 @@ export class ApiService {
     return this.http.post<ResponseI>(direccion,form)
   }
 
-  login(form:UserLogin):Observable<any>{
+  login(form:UserLogin):Observable<HttpResponse<any>>{
     let direccion = this.url+"login";
-    return this.http.post<any>(direccion, form);
+    return this.http.post<HttpResponse<any>>(direccion, form);
   }
 
   logout(){
