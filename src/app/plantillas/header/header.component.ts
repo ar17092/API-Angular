@@ -8,10 +8,16 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public headerBool: boolean =false;
+
   constructor(private apiservice:ApiService) { }
 
   ngOnInit(): void {
-    
+    if (localStorage.getItem("token")=="true") {
+      this.headerBool = true;
+    }else{
+      this.headerBool = false;
+    }
   }
 
   onLogout(){
