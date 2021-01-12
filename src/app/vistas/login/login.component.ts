@@ -29,10 +29,14 @@ export class LoginComponent implements OnInit {
   onLogin(form: UserLogin){
     this.apiservice.login(form).subscribe(data =>{
       if(data.exito){
-        console.log(data.mensaje);
-        
+        let email = form.email;
+        this.apiservice.getByEmail(email).subscribe(data2=>{
+          localStorage.setItem("currentUser",JSON.stringify(data2[0]));
+
       localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
+        });
+        console.log(data.mensaje);
       }
       else if(data.errorPassword=="La contraseña que intenta ingresar es inválida, por favor intente nuevamente"){
         this.router.navigate(['#']);

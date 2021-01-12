@@ -65,8 +65,15 @@ export class SignupComponent implements OnInit {
          * Si todo sale bien, almacenamos un true en el localstorage
          * para simular la sesión activa
          */
-        localStorage.setItem("token","true");
-        this.router.navigate(['dashboard']);
+        let email = form.email;
+        this.apiservice.getByEmail(email).subscribe(data2=>{
+          localStorage.setItem("currentUser",JSON.stringify(data2[0]));
+
+      localStorage.setItem("token", "true");
+      this.router.navigate(['dashboard']);
+        });
+        // localStorage.setItem("token","true");
+        // this.router.navigate(['dashboard']);
       }
     }); 
        

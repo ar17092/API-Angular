@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
     if(localStorage.getItem("token")=="false" || !localStorage.getItem("token")){
       this.router.navigate(['login']);
     }
+    console.log(localStorage.getItem("currentUser"));
+    
   }
 
 }

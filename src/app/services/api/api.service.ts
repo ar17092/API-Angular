@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ResponseI } from 'src/app/models/response.interface';
 import { User } from 'src/app/models/user.interface';
+import { UserL } from 'src/app/models/userL.interface';
 import { UserLogin } from 'src/app/models/userlogin.interface';
 
 @Injectable({
@@ -27,6 +28,12 @@ export class ApiService {
 
   logout(){
     localStorage.setItem("token","false");
+    localStorage.removeItem("currentUser");
     this.router.navigate(['login']);
+  }
+
+  getByEmail(email:string):Observable<UserL[]>{
+    let direccion = this.url +"buscarEmail/"+email;
+    return this.http.get<UserL[]>(direccion);
   }
 }

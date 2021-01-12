@@ -23,7 +23,9 @@
         </li>
       </ul>
       <ul class="navbar-nav mx-auto" >
-        
+        <li class="nav-item active">
+          <a href="" *ngIf="headerBool" class="nav-link">{{user?.nombre+" "+user?.apellido}}</a>
+        </li>
         <li class="nav-item activate"  >
           <a href="#" class="nav-link" *ngIf="headerBool" (click)="onLogout() " >Logout</a>
         </li>
