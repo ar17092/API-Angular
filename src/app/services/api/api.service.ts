@@ -11,7 +11,7 @@ import { UserLogin } from 'src/app/models/userlogin.interface';
 })
 export class ApiService {
 
-  url:string = "https://peopleserverjava.herokuapp.com/serverPeople/resources/datos/"
+  url:string = "http://localhost:8080/serverPeople/resources/datos/"
 
   constructor(private http: HttpClient, private router:Router ) { }
 
@@ -20,9 +20,9 @@ export class ApiService {
     return this.http.post<ResponseI>(direccion,form)
   }
 
-  login(form:UserLogin):Observable<HttpResponse<any>>{
-    let direccion = this.url+"login";
-    return this.http.post<HttpResponse<any>>(direccion, form);
+  login(form:UserLogin):Observable<any>{
+    let direccion = this.url+"login/";
+    return this.http.post<any>(direccion, form);
   }
 
   logout(){

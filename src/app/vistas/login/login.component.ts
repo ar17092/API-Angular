@@ -11,7 +11,8 @@ import { ApiService } from "../../services/api/api.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  public error: boolean=false;
+  public errorMsj:any;
   loginForm = new FormGroup({
     email : new FormControl('', Validators.required),
     password : new FormControl('', Validators.required)
@@ -27,12 +28,16 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: UserLogin){
     this.apiservice.login(form).subscribe(data =>{
-      if (data.status) {
-        console.log("Aquí debería devolver algo el API "+data.status); 
-      }
-      
+      if(data.mensaje=="ok"){
+        console.log(data.mensaje);
+        
       localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
+      }
+      else{
+        this.error=true;
+        this.errorMsj=data.error;
+      }
     });
   }
 
