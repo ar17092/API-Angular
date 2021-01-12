@@ -11,6 +11,9 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class SignupComponent implements OnInit {
 
+  public error:boolean=false;
+  public errorMsj:any;
+
   genres: any =['F','M'];
 
   signupForm = new FormGroup({
@@ -32,11 +35,17 @@ export class SignupComponent implements OnInit {
 
   postForm(form: User){
     this.apiservice.registrar(form).subscribe(data =>{
-      console.log(data);
-      localStorage.setItem("token","true");
+      let e: string = "El email "+form.email+" ya ha sido registrado";
+      
+      if(data.nombre ==e){
+        this.error=true;
+        this.errorMsj = data.nombre;
+      }
+      else{
+        localStorage.setItem("token","true");
       this.router.navigate(['dashboard']);
+      }
     }); 
-    console.log(form);
        
   }
 }

@@ -28,15 +28,20 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: UserLogin){
     this.apiservice.login(form).subscribe(data =>{
-      if(data.mensaje=="ok"){
+      if(data.exito){
         console.log(data.mensaje);
         
       localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
       }
+      else if(data.errorPassword){
+        this.error=true;
+        this.errorMsj=data.errorPassword;
+        
+      }
       else{
         this.error=true;
-        this.errorMsj=data.error;
+        this.errorMsj=data.errorEmail;
       }
     });
   }

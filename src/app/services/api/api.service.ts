@@ -15,9 +15,9 @@ export class ApiService {
 
   constructor(private http: HttpClient, private router:Router ) { }
 
-  registrar(form:User):Observable<ResponseI>{
+  registrar(form:User):Observable<any>{
     let direccion = this.url +"crear";
-    return this.http.post<ResponseI>(direccion,form)
+    return this.http.post<any>(direccion,form)
   }
 
   login(form:UserLogin):Observable<any>{
