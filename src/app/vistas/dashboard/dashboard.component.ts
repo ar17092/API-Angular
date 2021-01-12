@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("token")=="false"){
+    if(localStorage.getItem("token")=="false" || !localStorage.getItem("token")){
       this.router.navigate(['login']);
     }
   }

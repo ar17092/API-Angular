@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { async } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -11,9 +12,18 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class SignupComponent implements OnInit {
 
+  /**
+   * Variable que verifica el estado de la notificación en el signup
+   */
   public error:boolean=false;
+  /**
+   * Variable para almacenar el error e imprimirlo por pantalla
+   */
   public errorMsj:any;
 
+  /**
+   * array para almacenar los generos e iterar sobre él en la vista
+   */
   genres: any =['F','M'];
 
   signupForm = new FormGroup({
@@ -28,22 +38,35 @@ export class SignupComponent implements OnInit {
   constructor(private apiservice: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+    /**
+     * Si el token existe y esta en true, significa que la sesión esta iniciada
+     */
     if (localStorage.getItem("token")=="true"){
       this.router.navigate(['dashboard']);
     }
   }
 
   postForm(form: User){
-    this.apiservice.registrar(form).subscribe(data =>{
-      let e: string = "El email "+form.email+" ya ha sido registrado";
+    this.apiservice.registrar(form).subscribe( data =>{
+      /**
+       * Almaceno el error, igual al que envía el servidor para luego compararlo
+       */
+      let e: any = "El email "+form.email+" ya ha sido registrado";
       
-      if(data.nombre ==e){
+      /**
+       * Aquí ocupo la variable @e para ver si el error esta presente
+       */
+      if(data?.nombre ==e){
         this.error=true;
-        this.errorMsj = data.nombre;
+        this.errorMsj = e;
       }
       else{
+        /**
+         * Si todo sale bien, almacenamos un true en el localstorage
+         * para simular la sesión activa
+         */
         localStorage.setItem("token","true");
-      this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']);
       }
     }); 
        

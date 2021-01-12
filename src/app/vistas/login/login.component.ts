@@ -34,9 +34,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("token", "true");
       this.router.navigate(['dashboard']);
       }
-      else if(data.errorPassword){
-        this.error=true;
+      else if(data.errorPassword=="La contraseña que intenta ingresar es inválida, por favor intente nuevamente"){
+        this.router.navigate(['#']);
         this.errorMsj=data.errorPassword;
+        this.error=true;
         
       }
       else{
