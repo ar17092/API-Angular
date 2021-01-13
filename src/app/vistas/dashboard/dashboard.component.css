@@ -155,3 +155,8 @@ h6 {
 h6 {
     font-size: 18px;
 }
+app-footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
