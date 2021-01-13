@@ -1,5 +1,10 @@
-app-footer{
+app-footer {
     position: fixed;
     bottom: 0px;
     width: 100%;
+}
+
+.modal-content {
+    background: linear-gradient(to right, #810000, #f37121);
+    color: floralwhite;
 }
