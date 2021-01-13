@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpRequest, HttpResponse } from '@angul
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ResponseI } from 'src/app/models/response.interface';
+import { NgxSpinnerService } from "ngx-spinner";
 import { User } from 'src/app/models/user.interface';
 import { UserL } from 'src/app/models/userL.interface';
 import { UserLogin } from 'src/app/models/userlogin.interface';
@@ -14,7 +14,7 @@ export class ApiService {
 
   url:string = "https://peopleserverjava.herokuapp.com/serverPeople/resources/datos/"
 
-  constructor(private http: HttpClient, private router:Router ) { }
+  constructor(private http: HttpClient, private router:Router, private spinner: NgxSpinnerService) { }
 
   registrar(form:User):Observable<User>{
     let direccion = this.url +"crear";
@@ -27,6 +27,12 @@ export class ApiService {
   }
 
   logout(){
+    this.spinner.show();
+ 
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+        }, 200);
     localStorage.setItem("token","false");
     localStorage.removeItem("currentUser");
     this.router.navigate(['login']);

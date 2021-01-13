@@ -8,6 +8,7 @@ import { FooterComponent } from './plantillas/footer/footer.component';
 import { ReactiveFormsModule,FormsModule } from "@angular/forms";
 
 import { HttpClientModule } from "@angular/common/http";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
