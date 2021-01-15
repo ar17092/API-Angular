@@ -47,35 +47,40 @@ export class SignupComponent implements OnInit {
   }
 
   postForm(form: User){
-    this.apiservice.registrar(form).subscribe( data =>{
-      /**
-       * Almaceno el error, igual al que envía el servidor para luego compararlo
-       */
-      let e: any = "El email "+form.email+" ya ha sido registrado";
-      
-      /**
-       * Aquí ocupo la variable @e para ver si el error esta presente
-       */
-      if(data?.nombre ==e){
-        this.error=true;
-        this.errorMsj = e;
-      }
-      else{
+    if (form.apellido=="" ||form.nombre=="" || form.genero=="" || form.email=="" || form.password=="" ) {
+      this.error = true;
+      this.errorMsj = "Todos los campos son requeridos, completa de nuevo el formulario";
+    }else{
+      this.apiservice.registrar(form).subscribe( data =>{
         /**
-         * Si todo sale bien, almacenamos un true en el localstorage
-         * para simular la sesión activa
+         * Almaceno el error, igual al que envía el servidor para luego compararlo
          */
-        let email = form.email;
-        this.apiservice.getByEmail(email).subscribe(data2=>{
-          localStorage.setItem("currentUser",JSON.stringify(data2[0]));
-
-      localStorage.setItem("token", "true");
-      this.router.navigate(['dashboard']);
-        });
-        // localStorage.setItem("token","true");
-        // this.router.navigate(['dashboard']);
-      }
-    }); 
+        let e: any = "El email "+form.email+" ya ha sido registrado";
+        
+        /**
+         * Aquí ocupo la variable @e para ver si el error esta presente
+         */
+        if(data?.nombre ==e){
+          this.error=true;
+          this.errorMsj = e;
+        }
+        else{
+          /**
+           * Si todo sale bien, almacenamos un true en el localstorage
+           * para simular la sesión activa
+           */
+          let email = form.email;
+          this.apiservice.getByEmail(email).subscribe(data2=>{
+            localStorage.setItem("currentUser",JSON.stringify(data2[0]));
+  
+        localStorage.setItem("token", "true");
+        this.router.navigate(['dashboard']);
+          });
+          // localStorage.setItem("token","true");
+          // this.router.navigate(['dashboard']);
+        }
+      });  
+    }
        
   }
 }
